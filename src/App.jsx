@@ -1,18 +1,24 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
-import Main from './components/Main';
+import PromoBanner from './components/PromoBanner';
 import Footer from './components/Footer';
 import Spinner from './components/Spinner';
-import PromoBanner from './components/PromoBanner';
+
+import Home from './pages/Home';
+import Catalog from './pages/Catalog';
+import AboutUs from './pages/AboutUs';
+import RoomDetail from './pages/RoomDetail';
+
 import './App.css';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  
   const [cartItems, setCartItems] = useState(() => {
-    const saved = localStorage.getItem('cart');
-    return saved ? JSON.parse(saved) : [];
+    const savedCart = localStorage.getItem('hotel_cart');
+    return savedCart ? JSON.parse(savedCart) : [];
   });
+
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 2000);
@@ -20,7 +26,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cart', JSON.stringify(cartItems));
+    localStorage.setItem('hotel_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
   const toggleCart = (id) => {
@@ -32,13 +38,22 @@ function App() {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="app-container">
-      <Header cartCount={cartItems.length} />
-      <PromoBanner />
-      <Main cartItems={cartItems} onToggleCart={toggleCart} />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app-container">
+        <Header cartCount={cartItems.length} />
+        <PromoBanner />
+        
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<Catalog cartItems={cartItems} onToggleCart={toggleCart} />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/room/:id" element={<RoomDetail />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   );
-}
+} 
 
 export default App;
