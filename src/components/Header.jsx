@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; 
+
 const Header = ({ cartCount }) => {
   return (
     <header className="header">
@@ -11,6 +12,7 @@ const Header = ({ cartCount }) => {
             <li><Link to="/">Головна</Link></li>
             <li><Link to="/catalog">Каталог</Link></li>
             <li><Link to="/about">Про нас</Link></li>
+            <li><Link to="/contacts">Контакти</Link></li>
           </ul>
 
           <div className="cart-icon">
@@ -21,4 +23,5 @@ const Header = ({ cartCount }) => {
     </header>
   );
 };
+
 export default Header;

@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Catalog from './pages/Catalog';
 import AboutUs from './pages/AboutUs';
 import RoomDetail from './pages/RoomDetail';
+import Contacts from './pages/Contacts'; 
 
 import './App.css';
 
@@ -48,6 +49,7 @@ function App() {
           <Route path="/catalog" element={<Catalog cartItems={cartItems} onToggleCart={toggleCart} />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/room/:id" element={<RoomDetail />} />
+          <Route path="/contacts" element={<Contacts />} /> 
         </Routes>
 
         <Footer />
