@@ -212,3 +212,25 @@ html, body {
   padding: 20px;
   margin-top: auto;
 }
+
+.btn-pink {
+  background-color: #ff69b4; /* Твій фірмовий рожевий */
+  color: white;
+  border-radius: 20px;
+  padding: 8px 25px;
+  border: none;
+  transition: 0.3s;
+}
+
+.btn-outline-pink {
+  background-color: transparent;
+  color: #ff69b4;
+  border: 2px solid #ff69b4;
+  border-radius: 20px;
+  padding: 8px 25px;
+}
+
+.btn-pink:hover {
+  background-color: #ff1493;
+  transform: scale(1.05);
+}
